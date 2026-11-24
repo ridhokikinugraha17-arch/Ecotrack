@@ -1,4 +1,4 @@
-<?php require 'config.php';$err='';$ok=$_SESSION['ok']??null;unset($_SESSION['ok']);
+<?php require __DIR__.'/_lib/config.php';$err='';$ok=$_SESSION['ok']??null;unset($_SESSION['ok']);
 if($_SERVER['REQUEST_METHOD']=='POST'){chk();if(!empty($_POST['website']))die();$f=fn($k)=>trim($_POST[$k]??'');
 if(!$f('name')||!$f('title')||!$f('description')||!in_array($f('kab'),KAB)||!is_numeric($f('lat'))||!is_numeric($f('lng'))||!preg_match('/^[0-9+ ]{8,16}$/',$f('phone')))$err='Lengkapi nama, judul, deskripsi, kabupaten/kota, nomor telepon yang valid, dan pilih titik lokasi di peta.';
 else{try{$db->beginTransaction();q('INSERT INTO locations(kabupaten,kecamatan,address,lat,lng) VALUES(?,?,?,?,?)',[$f('kab'),$f('kec'),$f('addr'),$f('lat'),$f('lng')]);$lid=$db->lastInsertId();

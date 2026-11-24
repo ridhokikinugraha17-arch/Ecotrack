@@ -1,4 +1,4 @@
-<?php require 'config.php';$msg='';
+<?php require __DIR__.'/_lib/config.php';$msg='';
 if($_SERVER['REQUEST_METHOD']=='POST'){need(['admin']);chk();$f=fn($k)=>trim($_POST[$k]??'');
 if($f('name')&&in_array($f('kab'),KAB)){q('INSERT INTO waste_banks(name,address,manager,phone,kabupaten,lat,lng,hours,active) VALUES(?,?,?,?,?,?,?,?,?)',[$f('name'),$f('address'),$f('manager'),$f('phone'),$f('kab'),is_numeric($f('lat'))?$f('lat'):null,is_numeric($f('lng'))?$f('lng'):null,$f('hours'),user()['role']=='admin'?1:0]);$id=$db->lastInsertId();
 foreach(explode(',',$f('types')) as $t){[$n,$pr]=array_pad(explode('=',$t),2,0);if(trim($n))q('INSERT INTO waste_bank_categories(waste_bank_id,waste_type,price) VALUES(?,?,?)',[$id,trim($n),(int)$pr]);}

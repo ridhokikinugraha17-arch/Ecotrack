@@ -1,4 +1,4 @@
-<?php require 'config.php';$err='';
+<?php require __DIR__.'/_lib/config.php';$err='';
 if($_SERVER['REQUEST_METHOD']=='POST'){chk();$u=q('SELECT * FROM users WHERE email=?',[trim($_POST['email'])])->fetch();
 if($u&&password_verify($_POST['password'],$u['password'])){session_regenerate_id(true);$_SESSION['u']=['id'=>$u['id'],'name'=>$u['name'],'role'=>$u['role']];header('Location: '.($u['role']=='masyarakat'?'index.php':'dashboard.php'));exit;}
 $err='Email atau kata sandi salah. Periksa lagi lalu coba masuk.';}

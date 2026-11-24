@@ -1,4 +1,4 @@
-<?php require 'config.php';
+<?php require __DIR__.'/_lib/config.php';
 $s=q("SELECT COUNT(*) a,SUM(status='Selesai') b FROM reports")->fetch();$pts=q('SELECT COUNT(DISTINCT location_id) c FROM reports')->fetch()['c'];$bk=q('SELECT COUNT(*) c FROM waste_banks WHERE active=1')->fetch()['c'];
 $demo=q('SELECT COUNT(*) c FROM reports WHERE is_demo=1')->fetch()['c'];
 $pins=q('SELECT r.title,r.status,l.lat,l.lng FROM reports r JOIN locations l ON l.id=r.location_id')->fetchAll();

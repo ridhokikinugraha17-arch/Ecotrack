@@ -1,4 +1,4 @@
-<?php require 'config.php';require 'sipsn_lib.php';need(['admin','petugas']);$adm=user()['role']=='admin';sipsn_ensure();
+<?php require __DIR__.'/_lib/config.php';require __DIR__.'/_lib/sipsn_lib.php';need(['admin','petugas']);$adm=user()['role']=='admin';sipsn_ensure();
 $msg='';$errs=[];$NEED=['tahun','periode','nama_provinsi','nama_kabkota','jml_timbulan_harian','jml_timbulan_tahun'];
 if($_SERVER['REQUEST_METHOD']=='POST'){chk();if(!$adm)die('Khusus admin');$f=$_FILES['csv']??null;
 if(!$f||$f['error']||$f['size']>1048576||strtolower(pathinfo($f['name'],PATHINFO_EXTENSION))!='csv')$errs[]='Pilih file .csv (maksimal 1 MB).';

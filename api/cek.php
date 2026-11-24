@@ -1,4 +1,4 @@
-<?php require 'config.php';$tk=strtoupper(trim($_GET['tiket']??''));$r=null;
+<?php require __DIR__.'/_lib/config.php';$tk=strtoupper(trim($_GET['tiket']??''));$r=null;
 if($tk)$r=q('SELECT r.*,c.name cat,l.kabupaten,l.kecamatan FROM reports r JOIN report_categories c ON c.id=r.category_id JOIN locations l ON l.id=r.location_id WHERE r.ticket=?',[$tk])->fetch();
 head('Cek Status Laporan');?><div class="container py-4" style="max-width:720px"><h2 class="fw-bold">Cek status laporan</h2>
 <form class="input-group mb-3"><input class="form-control" name="tiket" placeholder="Contoh: ECO-20261124-A1B2C3" value="<?=e($tk)?>" required><button class="btn btn-eco">Cek status</button></form>

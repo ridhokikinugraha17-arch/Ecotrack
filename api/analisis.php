@@ -1,4 +1,4 @@
-<?php require 'config.php';require 'sipsn_lib.php';need(['admin','petugas']);sipsn_ensure();
+<?php require __DIR__.'/_lib/config.php';require __DIR__.'/_lib/sipsn_lib.php';need(['admin','petugas']);sipsn_ensure();
 $yrs=array_map('intval',array_column(q('SELECT DISTINCT tahun FROM waste_generation_sipsn ORDER BY tahun')->fetchAll(),'tahun'));$kabs=array_column(q('SELECT DISTINCT nama_kabkota FROM waste_generation_sipsn ORDER BY 1')->fetchAll(),'nama_kabkota');$pers=array_column(q('SELECT DISTINCT periode FROM waste_generation_sipsn ORDER BY 1')->fetchAll(),'periode');
 if(!$yrs){admin_head('Analisis Data','ana');?><div class="card card-eco p-4 text-center"><h5>Belum ada data SIPSN</h5><p class="text-muted">Import dataset lewat halaman <a href="sipsn.php">Data Timbulan Sampah</a> atau jalankan <code>tools/sipsn.sql</code>.</p></div><?php admin_foot();exit;}
 $yr=(int)($_GET['tahun']??0);if(!in_array($yr,$yrs,true))$yr=max($yrs);$kab=in_array($_GET['kab']??'',$kabs,true)?$_GET['kab']:'';$pr=in_array($_GET['periode']??'',$pers,true)?$_GET['periode']:'';$desc=($_GET['urut']??'desc')!='asc';

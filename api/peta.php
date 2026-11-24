@@ -1,4 +1,4 @@
-<?php require 'config.php';
+<?php require __DIR__.'/_lib/config.php';
 $w=['1=1'];$p=[];foreach(['kab'=>'l.kabupaten','status'=>'r.status','cat'=>'r.category_id'] as $k=>$col)if(!empty($_GET[$k])){$w[]="$col=?";$p[]=$_GET[$k];}
 if(!empty($_GET['s'])){$w[]='(r.title LIKE ? OR l.address LIKE ?)';$p[]=$p[]='%'.$_GET['s'].'%';}
 $rows=q('SELECT r.*,c.name cat,l.kabupaten,l.kecamatan,l.lat,l.lng FROM reports r JOIN locations l ON l.id=r.location_id JOIN report_categories c ON c.id=r.category_id WHERE '.implode(' AND ',$w).' ORDER BY r.id DESC',$p)->fetchAll();
