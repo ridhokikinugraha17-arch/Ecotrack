@@ -1,7 +1,8 @@
 <?php
+error_reporting(E_ALL&~E_DEPRECATED);ini_set('display_errors','0');ob_start();
 function env($k,$d=null){$v=getenv($k);return $v===false?($_SERVER[$k]??$d):$v;}
 $o=[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC];
-if(env('DB_SSL'))$o[PDO::MYSQL_ATTR_SSL_CA]=env('DB_SSL_CA','/etc/ssl/certs/ca-certificates.crt');
+if(env('DB_SSL'))$o[class_exists('Pdo\\Mysql')?Pdo\Mysql::ATTR_SSL_CA:PDO::MYSQL_ATTR_SSL_CA]=env('DB_SSL_CA','/etc/ssl/certs/ca-certificates.crt');
 $db=new PDO('mysql:host='.env('DB_HOST','localhost').';port='.env('DB_PORT',3306).';dbname='.env('DB_NAME','ecotrack').';charset=utf8mb4',env('DB_USER','root'),env('DB_PASS',''),$o);
 class DbSess implements SessionHandlerInterface{function __construct(private PDO $d){}
 function open($p,$n):bool{$this->d->exec('CREATE TABLE IF NOT EXISTS sessions(id VARCHAR(128) PRIMARY KEY,data MEDIUMTEXT,ts INT,INDEX(ts))');return true;}
