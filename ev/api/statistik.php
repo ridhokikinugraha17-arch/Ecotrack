@@ -1,0 +1,12 @@
+<?php
+/* Statistik Tahunan: ringkasan per tahun, cakupan, perbandingan wilayah sebanding, heatmap wilayah x tahun. */
+require __DIR__.'/_lib/app.php';
+shell_head('Statistik Tahunan','stat',['page'=>'stat','filters'=>true,'libs'=>['chart'],'h1'=>'Statistik Tahunan','sub'=>'Ringkasan timbulan sampah per tahun beserta cakupan pelaporan, sehingga perbandingan antar tahun dapat dibaca dengan adil.']);?>
+<section class="card-eco p-card mb-3"><div class="card-h"><h3>Ringkasan per Tahun</h3><span class="tag">mengikuti filter wilayah &amp; pencarian</span></div><div class="table-responsive"><table class="table eco-table align-middle"><thead><tr><th>Tahun</th><th class="text-end">Kab/kota terdata</th><th class="text-end">Total tahunan<small>ton/tahun</small></th><th class="text-end">Total harian<small>ton/hari</small></th><th class="text-end">Rata-rata/wilayah<small>ton/tahun</small></th><th class="text-end">Median<small>ton/tahun</small></th><th>Tertinggi</th><th>Terendah</th></tr></thead><tbody id="yrBody"></tbody></table></div><p class="note mb-0">Jumlah wilayah yang melapor berbeda tiap tahun, sehingga total antar tahun tidak sebanding secara langsung.</p></section>
+<div class="row g-3 mb-3">
+ <div class="col-xl-6"><section class="card-eco p-card h-100"><div class="card-h"><h3>Total Terlapor &amp; Cakupan Wilayah</h3></div><div class="chart-h"><canvas id="cTot"></canvas></div><p class="note mb-0">Dua sumbu berbeda satuan: batang = ton/tahun (kiri), garis = jumlah kab/kota (kanan).</p></section></div>
+ <div class="col-xl-6"><section class="card-eco p-card h-100"><div class="card-h"><h3>Perubahan pada Wilayah Sebanding</h3></div><div id="lflBox" class="chart-h"><canvas id="cLfl"></canvas></div>
+  <div class="table-responsive mt-2"><table class="table eco-table table-sm align-middle mb-0"><thead><tr><th>Pasangan</th><th class="text-end">Wilayah</th><th class="text-end">Total awal</th><th class="text-end">Total akhir</th><th class="text-end">Perubahan</th></tr></thead><tbody id="lflBody"></tbody></table></div></section></div>
+</div>
+<section class="card-eco p-card mb-3"><div class="card-h"><h3>Matriks Wilayah &times; Tahun</h3><span class="tag">timbulan tahunan (ton/tahun)</span></div><div class="table-responsive"><table class="table eco-table align-middle heat-t"><thead><tr id="heatHead"></tr></thead><tbody id="heatBody"></tbody></table></div><div class="heat-leg" id="heatLeg"></div></section>
+<?php shell_foot();

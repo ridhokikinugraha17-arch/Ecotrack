@@ -1,0 +1,22 @@
+
+# Environment dan password
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+vendor/
+
+# Cache dan hasil build
+.cache/
+.vercel/
+dist/
+build/
+
+# File sistem
+.DS_Store
+Thumbs.db
+
+# Log
+*.log

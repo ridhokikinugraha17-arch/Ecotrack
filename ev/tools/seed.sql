@@ -1,0 +1,14 @@
+INSERT INTO locations(id,kabupaten,kecamatan,address,lat,lng) VALUES(1,'Bandar Lampung','Kedaton','Jl. Teuku Umar',-5.4295,105.2610),(2,'Bandar Lampung','Panjang','Pesisir Panjang',-5.4700,105.3130),(3,'Lampung Selatan','Natar','Jl. Lintas Sumatera',-5.2400,105.2000),(4,'Lampung Tengah','Terbanggi Besar','Pasar Terbanggi',-4.9300,105.2300),(5,'Lampung Utara','Kotabumi','Tepi Way Sekampung',-4.8350,104.9000),(6,'Pesawaran','Gedong Tataan','Jl. Raya Gedong Tataan',-5.1500,105.0800);
+INSERT INTO reports(ticket,user_id,category_id,location_id,title,description,reporter_name,phone,status,is_demo,created_at) VALUES
+('ECO-DEMO-001',4,1,1,'Tumpukan sampah di tepi jalan','Sampah menumpuk lebih dari seminggu.','Siti (demo)','081200000001','Menunggu',1,NOW()-INTERVAL 3 DAY),
+('ECO-DEMO-002',4,3,2,'Sungai berbau dan berwarna keruh','Diduga limbah pabrik.','Siti (demo)','081200000001','Dalam Proses',1,NOW()-INTERVAL 20 DAY),
+('ECO-DEMO-003',4,2,3,'Sampah liar di lahan kosong','Warga membuang sampah sembarangan.','Budi (demo)','081200000002','Selesai',1,NOW()-INTERVAL 40 DAY),
+('ECO-DEMO-004',4,7,4,'Pembakaran sampah di permukiman','Asap mengganggu warga.','Dewi (demo)','081200000003','Ditugaskan',1,NOW()-INTERVAL 8 DAY),
+('ECO-DEMO-005',4,1,5,'TPS liar dekat sungai','Sampah masuk ke aliran sungai.','Andi (demo)','081200000004','Menunggu',1,NOW()-INTERVAL 1 DAY),
+('ECO-DEMO-006',4,5,6,'Limbah rumah tangga menyumbat selokan','Selokan penuh dan berbau.','Rina (demo)','081200000005','Selesai',1,NOW()-INTERVAL 65 DAY),
+('ECO-DEMO-007',4,6,1,'Limbah industri kecil ke parit','Warna air kehitaman.','Joko (demo)','081200000006','Diverifikasi',1,NOW()-INTERVAL 5 DAY),
+('ECO-DEMO-008',4,4,3,'Polusi udara dari pembakaran','Debu dan asap di pagi hari.','Maya (demo)','081200000007','Ditolak',1,NOW()-INTERVAL 30 DAY);
+INSERT INTO report_assignments(report_id,officer_id) VALUES(2,1),(4,1);
+INSERT INTO report_updates(report_id,user_id,status,note) VALUES(2,2,'Dalam Proses','Petugas menuju lokasi (data simulasi)'),(3,2,'Selesai','Sampah diangkut (data simulasi)');
+INSERT INTO waste_banks(name,address,manager,phone,kabupaten,lat,lng,hours,active,is_demo) VALUES('Bank Sampah Hijau Lestari','Jl. Kartini, Tanjung Karang','Ibu Ani','081300000001','Bandar Lampung',-5.4200,105.2600,'Senin-Jumat 08.00-15.00',1,1),('Bank Sampah Natar Bersih','Natar','Pak Hasan','081300000002','Lampung Selatan',-5.2450,105.1950,'Sabtu 08.00-12.00',1,1),('Bank Sampah Terbanggi Mandiri','Terbanggi Besar','Ibu Lina','081300000003','Lampung Tengah',-4.9200,105.2200,'Senin-Sabtu 09.00-14.00',1,1),('Bank Sampah Pesawaran Asri','Gedong Tataan','Pak Eko','081300000004','Pesawaran',-5.1450,105.0750,'Rabu & Sabtu 08.00-12.00',0,1);
+INSERT INTO waste_bank_categories(waste_bank_id,waste_type,price) VALUES(1,'Plastik PET',3000),(1,'Kardus',1800),(2,'Botol kaca',500),(2,'Kaleng',4000),(3,'Kertas',1500),(3,'Plastik',2500),(4,'Minyak jelantah',5000);

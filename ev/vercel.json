@@ -1,0 +1,13 @@
+{
+  "functions": { "api/*.php": { "runtime": "vercel-php@0.9.0" } },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/", "dest": "/api/index.php" },
+    { "src": "/lingkungan", "dest": "/api/info.php?h=lingkungan" },
+    { "src": "/tentang", "dest": "/api/info.php?h=tentang" },
+    { "src": "/cek", "dest": "/api/lapor.php?tab=cek" },
+    { "src": "/logout", "dest": "/api/login.php?out=1" },
+    { "src": "/register(\\.php)?", "status": 308, "headers": { "Location": "/lapor" } },
+    { "src": "/([a-z]+)(\\.php)?", "dest": "/api/$1.php" }
+  ]
+}
